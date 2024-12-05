@@ -31,9 +31,6 @@ public class EventoDAO {
     }
 
 
-
-
-
     public void deleteEvento(Evento evento) {
         em.getTransaction().begin();
         em.remove(evento);
@@ -47,6 +44,8 @@ public class EventoDAO {
         }
         em.getTransaction().commit();
     }
+
+
 
 
 

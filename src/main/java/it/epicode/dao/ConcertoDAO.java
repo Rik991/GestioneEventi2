@@ -1,6 +1,7 @@
 package it.epicode.dao;
 
 import it.epicode.gestione_eventi.entity.Concerto;
+import it.epicode.gestione_eventi.entity.genere;
 import jakarta.persistence.EntityManager;
 import lombok.AllArgsConstructor;
 
@@ -36,5 +37,16 @@ public class ConcertoDAO {
         em.getTransaction().commit();
     }
 
+    public List<Concerto> getConcertiInStreaming (boolean inStreaming){
+        var query = em.createNamedQuery("Trova_Concerti_Streaming");
+        query.setParameter("inStreaming", inStreaming);
+        return  query.getResultList();
+    }
+
+    public List<Concerto> getConcertiPerGenere (genere genere){
+        var query =  em.createQuery("SELECT a FROM Concerto a WHERE a.genere = :genere");
+        query.setParameter("genere", genere );
+        return  query.getResultList();
+    }
 
 }

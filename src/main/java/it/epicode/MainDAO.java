@@ -58,7 +58,7 @@ public class MainDAO {
         List<Location> listaLocation = new ArrayList<>();
         LocationDAO locationDAO = new LocationDAO(em);
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 30; i++) {
             Location location = new Location();
 
             location.setNome(faker.company().name());
@@ -82,7 +82,7 @@ public class MainDAO {
             concerto.setNumeroMassimoPartecipanti(faker.number().numberBetween(50, 10000));
             concerto.setGenere(faker.options().option(genere.class));
             concerto.setInStreaming(faker.bool().bool());
-
+            concerto.setLocation(faker.options().nextElement(listaLocation));
             listaConcerti.add(concerto);
         }
 
@@ -95,7 +95,7 @@ public class MainDAO {
             garaDiAtletica.setDescrizione("Garona di Atletica");
             garaDiAtletica.setTipoEvento(faker.options().option(EventoEnum.class));
             garaDiAtletica.setNumeroMassimoPartecipanti(faker.number().numberBetween(10, 100));
-
+            garaDiAtletica.setLocation(faker.options().nextElement(listaLocation));
             garaDiAtletica.setAtleti(atleti);
             garaDiAtletica.setVincitore(faker.options().nextElement(listaPersone));
             listaGareDiAtletica.add(garaDiAtletica);
@@ -115,7 +115,7 @@ public class MainDAO {
             partitaDiCalcio.setSquadraOspite(faker.team().name());
             partitaDiCalcio.setGolSquadraDiCasa(faker.number().numberBetween(0, 7));
             partitaDiCalcio.setGolSquadraOspite(faker.number().numberBetween(0, 7));
-
+            partitaDiCalcio.setLocation(faker.options().nextElement(listaLocation));
             if (partitaDiCalcio.getGolSquadraDiCasa() > partitaDiCalcio.getGolSquadraOspite()) {
                 partitaDiCalcio.setSquadraVincente(partitaDiCalcio.getSquadraDiCasa());
 
@@ -163,6 +163,12 @@ public class MainDAO {
         }
 
         partecipazioneDAO.insertAll(listaPartecipazioni);
+
+        ConcertoDAO concertoDAO = new ConcertoDAO(em);
+        System.out.println(concertoDAO.getConcertiInStreaming(false));
+        System.out.println(concertoDAO.getConcertiPerGenere(genere.CLASSICO));
+        System.out.println(concertoDAO.getConcertiPerGenere(genere.POP));
+        System.out.println(concertoDAO.getConcertiPerGenere(genere.ROCK));
 
 
         em.close();

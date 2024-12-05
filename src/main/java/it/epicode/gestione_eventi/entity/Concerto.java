@@ -6,8 +6,9 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "concerti")
-@NamedQuery(name = "Trova_tutto_Concerto", query = "SELECT a FROM Concerto a")
+@NamedQuery(name = "Trova_Concerti_Streaming", query = "SELECT a FROM Concerto a WHERE a.inStreaming = :inStreaming")
 public class Concerto extends Evento {
+
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private genere genere;

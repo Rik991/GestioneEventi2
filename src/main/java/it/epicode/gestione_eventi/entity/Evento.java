@@ -13,6 +13,8 @@ import java.util.List;
 @Data
 @Table(name = "eventi")
 @Inheritance(strategy = InheritanceType.JOINED)
+@AllArgsConstructor
+@NoArgsConstructor
 public class Evento {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -34,8 +36,7 @@ public class Evento {
     @Column(name = "num_max_partecipanti",nullable = false)
     private int numeroMassimoPartecipanti;
 
-
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "location_id")
     private Location location;
 
