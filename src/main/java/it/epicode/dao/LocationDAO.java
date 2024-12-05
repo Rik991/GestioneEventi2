@@ -32,23 +32,7 @@ public class LocationDAO {
         em.getTransaction().commit();
     }
 
-    public void updateLocation(Long id, Location location) {
-        Location lReale = locationById(id);
-        lReale.setNome(location.getNome());
-        lReale.setCitta(location.getCitta());
 
-
-        em.getTransaction().begin();
-        em.merge(lReale);
-        em.getTransaction().commit();
-    }
-
-    public void deleteLocation(Long id) {
-        Location lReale = locationById(id);
-        em.getTransaction().begin();
-        em.remove(lReale);
-        em.getTransaction().commit();
-    }
 
     public void deleteLocation(Location location) {
         em.getTransaction().begin();

@@ -30,25 +30,9 @@ public class EventoDAO {
         em.getTransaction().commit();
     }
 
-    public void updateEvento(Long id, Evento evento) {
-        Evento eReale = findEventoById(id);
-        eReale.setTitolo(evento.getTitolo());
-        eReale.setDataEvento(evento.getDataEvento());
-        eReale.setDescrizione(evento.getDescrizione());
-        eReale.setTipoEvento(evento.getTipoEvento());
-        eReale.setNumeroMassimoPartecipanti(evento.getNumeroMassimoPartecipanti());
 
-        em.getTransaction().begin();
-        em.merge(eReale);
-        em.getTransaction().commit();
-    }
 
-    public void deleteEvento(Long id) {
-        Evento eReale = findEventoById(id);
-        em.getTransaction().begin();
-        em.remove(eReale);
-        em.getTransaction().commit();
-    }
+
 
     public void deleteEvento(Evento evento) {
         em.getTransaction().begin();

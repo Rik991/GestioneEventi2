@@ -33,17 +33,7 @@ public class PartecipazioneDAO {
         em.getTransaction().commit();
     }
 
-    public void updatePartecipazione(Long id, Partecipazione partecipazione) {
-        Partecipazione pReale = partecipazioneById(id);
-        pReale.setEvento(pReale.getEvento());
-        pReale.setPersona(pReale.getPersona());
-        pReale.setStato(pReale.getStato());
 
-
-        em.getTransaction().begin();
-        em.merge(pReale);
-        em.getTransaction().commit();
-    }
 
     public void deletePartecipazione(Long id) {
         Partecipazione pReale = partecipazioneById(id);

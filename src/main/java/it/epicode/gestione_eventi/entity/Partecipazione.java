@@ -18,10 +18,13 @@ public class Partecipazione {
     @Enumerated(EnumType.STRING)
     private statoPartecipazione stato;
 
+
     @ManyToOne
     @JoinColumn(name= "evento_id")
     private Evento evento;
 
+
+    // TANTE PARTECIPAZIONI PER UNA PERSONA (TANTE A UNO)
     @ManyToOne
     @JoinColumn(name= "persona_id")
     private Persona persona;
